@@ -1,0 +1,30 @@
+body {
+	padding: 0;
+	margin: 0;
+	background-color: #cecece;
+	background: url(../img/winxp.png)  no-repeat center center fixed;
+}
+img {
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+.window, .target{
+	behavior:url("hover.htc");
+
+	position: absolute;
+	height: 150px;
+	width: 200px;
+	background: #F00;
+	top: 30px;
+	left: 60px;
+	border: 2px solid #808080;
+	cursor: pointer;
+	z-index: 0;
+}
+
+.window:hover, .target:hover, .window.hover, .target.hover {
+	border: 2px solid #00FF00;
+}
