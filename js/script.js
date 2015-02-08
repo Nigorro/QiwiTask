@@ -54,13 +54,18 @@ Windows.zIndex = 0;
 // Create
 Windows.prototype.createDOMElement = function createDOMElement(e) {
   var el = document.createElement('div');
-    el.className = 'window';
-    el.style.left = this.x - this.offsetX + 'px';
-    el.style.top = this.y - this.offsetY + 'px';
-    el.style.background  = this.x + this.y;
-    el.style.zIndex = Windows.zIndex;
+  var close = document.createElement('div');
+  close.attachEvent('onclick', proxy(this, this.deleteWindow));
+  close.className = 'close';
+  close.innerHTML = 'X';
+  el.appendChild(close);
+  el.className = 'window';
+  el.style.left = this.x - this.offsetX + 'px';
+  el.style.top = this.y - this.offsetY + 'px';
+  el.style.background  = this.x + this.y;
+  el.style.zIndex = Windows.zIndex;
 
-    return el;
+  return el;
 }
 
 Windows.prototype.startMove = function startMove(e) {
@@ -110,6 +115,16 @@ Windows.prototype.move = function move(e) {
   this.el.style.left = this.x + 'px';
   this.el.style.top = this.y + 'px';
 }
+
+Windows.prototype.deleteWindow = function deleteWindow(e) {
+  this.removeWindow();
+  delete this.el;
+}
+
+Windows.prototype.removeWindow = function removeWindow (e) {
+  alert(this.el);
+  this.el.parentElement.removeChild(this.el);
+};
 
 // Proxy helper, to pass context into function
 function proxy (context, f) {
