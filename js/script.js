@@ -122,7 +122,6 @@ Windows.prototype.deleteWindow = function deleteWindow(e) {
 }
 
 Windows.prototype.removeWindow = function removeWindow (e) {
-  alert(this.el);
   this.el.parentElement.removeChild(this.el);
 };
 
